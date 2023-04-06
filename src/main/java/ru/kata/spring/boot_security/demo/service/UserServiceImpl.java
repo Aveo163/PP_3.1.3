@@ -42,7 +42,6 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
     }
-
     @Override
     public User getUser(Long id) {
         return userRepository.findById(id).get();
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         userRepository.delete(userRepository.findById(id).get());
     }
 
-
+    @Transactional
     public User findUserByUsername(String username) {
         return userRepository.findByUsername(username);
     }
